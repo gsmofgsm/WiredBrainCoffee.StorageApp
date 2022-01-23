@@ -15,6 +15,7 @@ namespace WiredBrainCoffee.StorageApp.Repositories
         IEnumerable<T> GetAll();
         T GetById(int id);
     }
+
     public interface IRepository<T> : IReadRepository<T>, IWriteRepository<T>
         where T : IEntity // T is invariant
     {
