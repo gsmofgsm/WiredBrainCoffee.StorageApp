@@ -1,18 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WiredBrainCoffee.StorageApp.Entities;
 
 namespace WiredBrainCoffee.StorageApp.Repositories
 {
-    public delegate void ItemAdded<in T>(T item);
     public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
         private readonly DbContext _dbContext;
-        private readonly ItemAdded<T>? _itemAddedCallback;
+        private readonly Action<T>? _itemAddedCallback;
         private readonly DbSet<T> _dbSet;
 
-        public SqlRepository(DbContext dbContext, ItemAdded<T>? itemAddedCallback = null)
+        public SqlRepository(DbContext dbContext, Action<T>? itemAddedCallback = null)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
