@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using WiredBrainCoffee.StorageApp.Entities;
 
 namespace WiredBrainCoffee.StorageApp.Repositories
 {
-    public class SqlRepository<T> where T : class, IEntity, new()
+    public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<T> _dbSet;
