@@ -14,6 +14,11 @@ namespace WiredBrainCoffee.StorageApp.Repositories
             return new T();
         }
 
+        public IEnumerable<T> GetAll()
+        {
+            return _items.ToList();
+        }
+
         public T GetById(int id)
         {
             return _items.Single(item => item.Id == id);
