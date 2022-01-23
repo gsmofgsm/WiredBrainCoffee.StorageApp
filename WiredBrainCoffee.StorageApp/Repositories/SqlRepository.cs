@@ -9,15 +9,14 @@ namespace WiredBrainCoffee.StorageApp.Repositories
     public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
         private readonly DbContext _dbContext;
-        private readonly Action<T>? _itemAddedCallback;
         private readonly DbSet<T> _dbSet;
 
-        public SqlRepository(DbContext dbContext, Action<T>? itemAddedCallback = null)
+        public SqlRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
-            _itemAddedCallback = itemAddedCallback;
         }
+        public event EventHandler<T>? ItemAdded;
 
         public IEnumerable<T> GetAll()
         {
@@ -32,7 +31,7 @@ namespace WiredBrainCoffee.StorageApp.Repositories
         public void Add(T item)
         {
             _dbSet.Add(item);
-            _itemAddedCallback?.Invoke(item);
+            ItemAdded?.Invoke(this, item);
         }
         public void Remove(T item)
         {
