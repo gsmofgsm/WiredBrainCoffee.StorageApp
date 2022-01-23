@@ -8,13 +8,13 @@ namespace WiredBrainCoffee.StorageApp
     {
         static void Main(string[] args)
         {
-            var employeeRepository = new GenericRepositoryWithRemove<Employee, int>();
+            var employeeRepository = new GenericRepository<Employee>();
             employeeRepository.Add(new Employee { FirstName = "Julia" });
             employeeRepository.Add(new Employee { FirstName = "Anna" });
             employeeRepository.Add(new Employee { FirstName = "Thomas" });
             employeeRepository.Save();
 
-            var organizationRepository = new GenericRepository<Organization, Guid>();
+            var organizationRepository = new GenericRepository<Organization>();
             organizationRepository.Add(new Organization { Name = "PluralSight" });
             organizationRepository.Add(new Organization { Name = "Mosadex" });
             organizationRepository.Save();
