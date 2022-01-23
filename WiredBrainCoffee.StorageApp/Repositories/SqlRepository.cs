@@ -5,7 +5,7 @@ using WiredBrainCoffee.StorageApp.Entities;
 
 namespace WiredBrainCoffee.StorageApp.Repositories
 {
-    public delegate void ItemAdded<T>(T item);
+    public delegate void ItemAdded<in T>(T item);
     public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
         private readonly DbContext _dbContext;
